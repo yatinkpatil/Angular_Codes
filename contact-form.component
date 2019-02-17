@@ -1,0 +1,41 @@
+<form #f='ngForm' (ngSubmit)='submit(f)'>
+<div class="form-group">
+  <label for="firstname">firstname</label>
+  <input required minlength='3' maxlength='10' pattern='banana' ngModel name='firstname' 
+   id='firstname' #firstname='ngModel'(change)='log(firstname)'type="text" class="form-control">
+  
+<div class='alert alert-danger' *ngIf='firstname.touched && !firstname.valid'>
+  <div *ngIf='firstname.errors.required'>first name required !!</div>
+  <div *ngIf='firstname.errors.minlength'>minlength 3 cha'</div>
+  <div *ngIf='firstname.errors.pattern'>wrogn Pattern</div>
+</div>
+</div>
+
+
+<div class="form-group">
+  <label for="comment">Comment</label>
+  <textarea ngModel name='comment'
+  id="comment" cols="30" 
+  rows="10" class='form-control'></textarea>
+</div>
+
+<div>
+  <label> Checkbox</label><br>
+  <input type='checkbox' ngModel #checkbox='ngModel' name='checkbox'> Select Suitable Checkbox <br>
+  <input type='checkbox' ngModel #checkbox='ngModel' name='checkbox'> Select Suitable Checkbox  <br>
+</div>
+
+<div class="form-group">
+  <label for="Contact"></label>
+  <select ngModel name="Contact" id="Contact" class="form-control">
+    <option *ngFor="let method of Contact" [value]="method.id">{{method.name}}</option>
+  </select>
+</div>
+
+<div>
+    <label> Checkbox</label><br>
+    <input type='radio' ngModel #checkbox='ngModel' name='radio' value="1"> Email <br>
+    <input type='radio' ngModel #checkbox='ngModel' name='radio' value="2"> Phone  <br>
+  </div>
+<button class='btn btn-primary' [disabled]=!f.valid>Submit</button>     
+</form> 
